@@ -11,9 +11,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-.refresh-icon{
-  transition: transform 0.5s;
-}
-  .refresh-icon:active{
-    transform:rotate(150deg);
-}

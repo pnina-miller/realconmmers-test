@@ -11,16 +11,16 @@ export default function DetailesCard() {
   }, [item])
 
   return (<>
-    <Card style={{ marginTop: '50px' }}>
+    <Card className='detailes-card-card' >
       <Container>
         <Row>
           <img
             onClick={() => history.push('/')}
-            style={{width:'auto', height: '50px' }}
+            className='detailes-card-img'
             src={`https://img.icons8.com/?id=80689&size=64&token=&format=png&fromSite=true&color=000000`}
             title='back'
             alt='back'
-            />
+          />
         </Row>
         <Row>
           <Col xs={12} md={6}>
@@ -29,7 +29,13 @@ export default function DetailesCard() {
             <h2>type: {item.Type}</h2>
           </Col>
           <Col>
-            {item.Poster?.includes('http') && <img alt='poster' src={item.Poster} />}
+             <img 
+             alt='poster' 
+             src={item.Poster}
+             onLoad={e=>e.target.style.display=''} 
+             key={item.Poster} 
+             onError={e=>e.target.style.display='none'} 
+              />
           </Col>
         </Row>
       </Container>
