@@ -12,6 +12,7 @@ export default function DataView({ data, getServerData }) {
   const [cardsView, setCardsView] = useState([])
   const [gridView, setGridView] = useState(true)
   const [sortIcon, setSortIcon] = useState('a0bAWjN2IPpJ')
+  const [searchWord, setSearchWord] = useState('')
 
   const setTitle = (oldTitle, newTitle, itemId) => {
     if (oldTitle !== newTitle) {
@@ -33,8 +34,12 @@ export default function DataView({ data, getServerData }) {
     let a = [...new Set(data?.results.map(item => item.Type))]
     setTypesArr(a.map(b => ({ type: b, count: data.results.filter(c => c.Type === b).length })))
   }, [data])
+  useEffect(() => filterCards(searchWord), [searchWord])
 
+  const filterCards = (value) => {
+    setCardsView(data?.results?.filter(item => item.Title.toLowerCase().includes(value.toLowerCase()) || item.Year.slice(0, 4).includes(value)))
 
+  }
   return (
     <Container className='data-view-container' >
       <h1>Pnina Miller</h1>
@@ -57,20 +62,21 @@ export default function DataView({ data, getServerData }) {
           alt='sort'
         />
 
-        <input 
-        className='data-view-search-input' 
-        onChange={e => setCardsView(data.results.filter(item => item.Title.toLowerCase().includes(e.target.value.toLowerCase())))} 
+        <input
+          className='data-view-search-input'
+          value={searchWord}
+          onChange={e => setSearchWord(e.target.value)}
         />
         <img
           className='view-data-icon clear-filter-icon'
           src={`https://img.icons8.com/?id=5310&size=24&token=&format=png&fromSite=true&color=000000`}
-          onClick={() => setCardsView(data.results)}
+          onClick={() => setSearchWord('')}
           title='clear filtering'
           alt='clear filtering'
         />
       </Row>
       <Row>
-        <Col xs={11}>
+        <Col xs={12} md={11}>
           <Tabs defaultActiveKey='all' id='types-tabs' onSelect={type => { setCardsView(data?.results?.filter(item => item.Type.includes(type))) }}>
             <Tab
               eventKey={''}

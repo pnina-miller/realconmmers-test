@@ -25,9 +25,9 @@ export function ListItemCard({ item, setTitle }) {
     const history = useHistory()
 
     return (
-        <Card>
+        <Card className='card-list-card'>
             <Row>
-                <Col xs={12} sm={2}>
+                <Col xs={12} md={2}>
                     <Card.Img 
                     onLoad={e=>e.target.style.display=''} 
                     onError={e=>{e.target.style.display='none'}} 
@@ -36,7 +36,7 @@ export function ListItemCard({ item, setTitle }) {
                     className='card-list-img' 
                      />
                 </Col>
-                <Col xs={12} sm={10} className='card-list-details-col' >
+                <Col xs={12} md={10} className='card-list-details-col' >
                     <EditAbleTitle itemId={item.imdbID} title={item.Title} setTitle={setTitle} />
                     <h6>{item.Year.slice(0, 4)}</h6>
                     <h6>type: {item.Type}</h6>
