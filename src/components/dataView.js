@@ -77,7 +77,7 @@ export default function DataView({ data, getServerData }) {
       </Row>
       <Row>
         <Col xs={12} md={11}>
-          <Tabs defaultActiveKey='all' id='types-tabs' onSelect={type => { setCardsView(data?.results?.filter(item => item.Type.includes(type))) }}>
+          <Tabs defaultActiveKey='all' id='types-tabs' onSelect={type => {setSearchWord(''); setCardsView(data?.results?.filter(item => item.Type.includes(type))) }}>
             <Tab
               eventKey={''}
               title={`all (${data?.results?.length})`}
